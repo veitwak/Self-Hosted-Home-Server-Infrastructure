@@ -113,8 +113,8 @@ flowchart TD
 
 ### 1. Clone Repository
 ```bash
-git clone [https://github.com/YOUR_USERNAME/homeserver-repo.git](https://github.com/YOUR_USERNAME/homeserver-repo.git)
-cd homeserver-repo
+git clone [https://github.com/veitwak/Self-Hosted-Home-Server-Infrastructure.git](https://github.com/veitwak/Self-Hosted-Home-Server-Infrastructure.git)
+cd Self-Hosted-Home-Server-Infrastructure
 ```
 
 ### 2. Configure Environment Variables
