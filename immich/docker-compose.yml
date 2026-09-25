@@ -1,0 +1,49 @@
+name: immich
+
+services:
+  immich-server:
+    container_name: immich_server
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    volumes:
+      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+      # Bridge to nextcloud (read only if you want immich only as a abstractioon layer between you and nextcloud like I do. Otherwise feel free to have you albums seperately from nextcloud):
+      - ./data:/data:ro
+    ports:
+      - 2283:2283
+    environment:
+      - DB_HOSTNAME=immich-database
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE_NAME=immich
+      - REDIS_HOSTNAME=immich-redis
+    depends_on:
+      - immich-database
+      - immich-redis
+    restart: always
+
+  immich-machine-learning:
+    container_name: immich_machine_learning
+    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    volumes:
+      - immich-model-cache:/cache
+    restart: always
+
+  immich-redis:
+    container_name: immich_redis
+    image: docker.io/redis:6.2-alpine
+    restart: always
+
+  immich-database:
+    container_name: immich_database
+    image: pgvector/pgvector:pg14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=immich
+    volumes:
+      - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  immich-model-cache:

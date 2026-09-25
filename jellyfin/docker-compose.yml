@@ -1,0 +1,21 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    user: 1000:1000
+    network_mode: host
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    volumes:
+      - ./data:/config
+    restart: unless-stopped
+    
+    # configuration to use graphics card acceleration (Nvidia and AMD with rocm or similar cuda wrapper):
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

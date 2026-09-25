@@ -1,0 +1,12 @@
+# Secrets & Zertifikate ignorieren
+.env
+*.key
+*.crt
+*.pem
+
+# System- & Datenordner ignorieren
+*.db
+*.sqlite
+data/
+media/
+backups/
