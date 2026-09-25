@@ -113,7 +113,7 @@ flowchart TD
 
 ### 1. Clone Repository
 ```bash
-git clone [https://github.com/veitwak/Self-Hosted-Home-Server-Infrastructure.git](https://github.com/veitwak/Self-Hosted-Home-Server-Infrastructure.git)
+git clone https://github.com/veitwak/Self-Hosted-Home-Server-Infrastructure.git
 cd Self-Hosted-Home-Server-Infrastructure
 ```
 
