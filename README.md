@@ -10,13 +10,10 @@ A modular, Docker-based homelab server on Ubuntu Linux for AI workloads, media s
 ---
 
 ## Architecture and Network Overview
-
 ```mermaid
 flowchart TD
     subgraph Internet ["External Network"]
         Clients[Clients / Mobile Devices]
-├── sillytavern/         # LLM interface
-├── docker-update.sh     # Automated update script for all 
     end
 
     subgraph Server ["Homelab Server"]
@@ -60,7 +57,6 @@ flowchart TD
     OpenWebUI --> Ollama
     Caddy --> ComfyUI
 ```
-
 ---
 
 ## Included Services
